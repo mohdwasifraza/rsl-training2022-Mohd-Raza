@@ -1,0 +1,152 @@
+Ans1.
+The key difference is structs are value types and classes are reference types. When we copy a struct, we end up with two unique copies of the data (It does not change the original data). When we copy a class, we end up with two references to one instance of the data (It changes the original data).
+
+
+
+
+Ans 2.
+
+func getSumOfEvenOdd(array: [Int]) ->(sumEven:Int, sumOdd: Int) {
+    var sumOfEven=0,sumOfOdd=0
+    for value in array[0..<array.count]{
+        if value%2==0{
+            sumOfEven+=value
+        }
+        else{
+            sumOfOdd+=value
+        }
+    }
+    return (sumOfEven,sumOfOdd)
+}
+let tempArray = [1,2,3,4,5,6,7,8,9,10]
+let evenOdd = getSumOfEvenOdd(array: tempArray)
+print("sum of even numbers is is \(evenOdd.sumEven) andsum of odd numbers is \(evenOdd.sumOdd)"
+
+Output-
+sum of even numbers is is 30 andsum of odd numbers is 25
+
+
+
+
+
+Ans 3.
+import Foundation
+func sum(anys: Any...) -> String {
+    var s=0
+    for item in  anys{
+
+        switch item{
+
+        case "" as String,0 as Int:            
+            s-=10
+           
+        case let str as String:
+        let x=Int(str) ?? 0
+        if x>0{
+           
+            s+=abs
+           
+        }
+        case let n as Int: 
+            s+=n
+            
+
+        default:
+         s+=0
+        }
+    }
+        return "\(s)"
+}
+
+print(sum(anys:"10",10.8,10, "a number", -2, ""))
+
+
+Output-
+8
+
+
+
+
+
+Ans 4.
+func concatString(firstString:String="",secondString:String="", thirdString:String="")->String{
+    if firstString=="" && secondString=="" && thirdString=="" {
+        return "none"
+    }
+    return firstString + secondString + thirdString
+}
+print(concatString(firstString:"abc",secondString:"def"))
+print(concatString(firstString:"abc"))
+print(concatString())
+
+Output-
+abcdef
+abc
+none
+
+
+
+
+
+
+
+Ans 5.
+import Foundation
+extension Array where Element == Int {
+   mutating func moveElementToBackFromIndex(index:Int)  -> [Int] {
+      for values in 0..<self.count{
+         
+          if values == index {
+             
+              var element = self.remove(at:index)
+              self.insert(element, at: self.count)
+          }
+
+      }
+      return self
+   }
+}
+var arr = [5,2,3,4]
+print(arr.moveElementToBackFromIndex(index:1))
+
+Output-
+[5, 3, 4, 2]
+
+
+
+
+
+Ans 6)
+Open- declarations are accessible from everywhere but you can subclass or override outside the module.
+Public- 	declarations are accessible from everywhere but you can’t subclass or override outside the module
+Private-	declarations are accessible only within the defined class or struct. It does not allow access in a subclass with in the same file or in another file.
+Fileprivate -	Same as private but declarations are accessible in a subclass with in the same file.
+internal - 	declarations are accessible only within the defined module (default)
+
+
+
+
+
+Ans 7)
+class Queue<T> {
+    var items: [T] = []
+    init (items: [T]) {
+    self.items = items
+      }
+    func add( item: T) {
+        items.append(item)
+    }
+    
+    func size() -> Int {
+        return items.count
+    }
+
+}
+var arr=["wasif"]
+let x = Queue<String>(items:arr)
+x.add(item:"Example")
+print(x.size())
+
+
+Output: 2
+
