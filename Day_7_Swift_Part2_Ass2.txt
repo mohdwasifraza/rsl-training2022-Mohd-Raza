@@ -1,0 +1,109 @@
+Ans 1.
+The main difference between static and class function is that we cannot override a static function but we can override a class function.
+
+
+
+
+
+
+Ans 2.
+import Foundation
+enum Menu{
+    case Burger(_ noOfPatties:Int=1) 
+    case Fries(size:String)
+    case Meal
+    case Coke
+}
+
+let array:[Menu]=[.Meal ,.Fries(size:"Large") , .Burger(), .Coke]
+func printItems(_ arrayItems:[Menu]){
+    for items in arrayItems{
+        switch items{
+            
+            case .Fries(let value):
+            print("\(value) Fries")
+            case .Burger(let value):
+            print("Burger with \(value) patties")
+            
+            case .Meal:
+            print("Meal")
+            fallthrough
+            case .Coke:
+            print("Coke")
+
+        }
+    }
+} 
+ printItems(array)
+
+
+Output-
+Meal
+Coke
+Large Fries
+Burger with 1 patties
+
+
+
+
+
+
+
+3)
+import Foundation
+struct Person {
+    var firstName: String=""    
+    var middleName: String=""
+    var lastName: String=""
+    var age: Int=0
+    
+}
+
+extension Person{
+    var fullName :String{
+        return self.firstName + " " + self.middleName + " " + self.lastName 
+    }
+}
+let name = Person(firstName: "Mohd" , middleName: "Wasif" , lastName:"Raza")
+print(name.fullName)
+
+
+
+Output-
+Mohd Wasif Raza
+
+
+
+
+
+
+
+
+Ans 4)
+import Foundation
+struct Stack {
+    var myArray: [Int] = []
+    
+    mutating func push(_ element: Int) {
+        myArray.append(element)
+    }
+    
+    mutating func pop() -> Int? {
+        if !myArray.isEmpty{
+        return myArray.removeFirst()
+        }
+        else{
+            return nil
+        }
+    }
+    
+}
+var st=Stack()
+st.push(5)
+print(st.pop())
+print(st.pop())
+
+
+Output-
+Optional(5)
+nil
