@@ -1,0 +1,155 @@
+Swift Part 1 Assignment
+Assignment
+
+
+
+Ans 1. Set is a collection of unique data. We use set when we need to ensure that an item only appear once and we cannot use mixed datatypes in a set.
+
+Syntax for creating a set is-
+var VariableName : Set = [value1,value2,value 3]
+Ex-
+
+var num : Set = [1,2,3]
+for i in num{
+    print(i)
+}
+Output- 1 2 3
+
+
+Main functions of set are-
+VariableName.insert(value) -                        Insert an element in a set                          
+VariableName.remove(value)-                      Remove an Element from a Set
+Sorted()-				   sorts set elements
+forEach()-                                                    performs the specified actions on each element
+contains()-				searches the specified element in a set
+randomElement()-			returns a random element from the set
+firstIndex()-				returns the index of the given element
+removeFirst() -				 to remove the first element of a set
+removeAll() - 				to remove all elements of a set
+
+
+
+
+
+
+Ans2. A range is a series of values between two numeric intervals.
+Ex- var numbers= 1…4
+Here, … is a range operator, 1 is lower bound and 4 is upper bound
+
+	Types of ranges
+a) Closed Range- Includes all values in the interval from lower bound to the upper bound.
+Ex- for numbers in 1...4 {
+  print(numbers)
+}
+Output- 1 2 3 4
+
+b) Half-Open range- Includes all the values from the lower bound to the upper bound excluding the upper bound 
+Ex- for numbers in 1..<4 {
+  print(numbers)
+}
+Output- 1 2 3
+
+c) One-sided Range- A one-sided range contains elements up to infinite in one direction.
+Ex- let range=2… , It contains all elements from 2 to infinite.
+
+
+
+
+
+Ans3. 
+var a="" , b=""
+let result = a=="" && b=="" ? "none" : a+b
+print(result)
+
+output- none
+
+
+
+
+
+Ans4.
+let elements = [6, 8, 1, 25, 65, 14 ,2, 1, 6, 6, 8]
+var set1=Set<Int>()
+for i in elements{
+    set1.insert(i)
+}
+print(set1)
+
+Output- [25, 1, 6, 2, 14, 8, 65]
+
+
+
+
+
+
+Ans5. (Changed if else to switch case expression)
+
+let elements = [6, 8, 1, 25, 65, 14 ,2]
+var odd_num = [Int]()
+var even_num = [Int]()
+for item in elements{
+    
+    switch (item % 2){
+        case 0:
+        even_num.append(item)
+
+        case 1:    
+        odd_num.append(item)
+
+        default:break
+
+    
+    }
+}
+
+print("Odd numbers ", odd_num)
+print("even numbers ",even_num)
+
+Output-
+Odd numbers  [1, 25, 65]
+even numbers  [6, 8, 14, 2]
+
+
+
+
+Ans6:
+var values = [2,4,1,5,1,8,6,4]
+var x=1,y=2,z=4,sum=0
+if x==0{
+    for i in y...z{
+        sum+=values[i]
+    }
+    print(sum)
+}
+else{
+    values.insert(z,at:y)
+    print(values)
+}
+
+Output when x=1 --
+[2, 4, 4, 1, 5, 1, 8, 6, 4]
+Output when x=0 –
+7
+
+
+
+
+
+Ans7:
+var str="abbcccdddd"
+var charCount: [Character: Int] = [:]
+
+for i in str{    
+    charCount[i,default:0]+=1
+}
+for i in Array(charCount.keys){
+    print("Character ",i," appears ",charCount[i,default:0]," times in the string")
+}
+
+
+Output-
+Character  c  appears  3  times in the string
+Character  a  appears  1  times in the string
+Character  d  appears  4  times in the string
+Character  b  appears  2  times in the string
+
