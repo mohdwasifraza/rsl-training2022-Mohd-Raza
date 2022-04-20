@@ -82,22 +82,28 @@ Output- [25, 1, 6, 2, 14, 8, 65]
 
 
 
-Ans5.
+Ans5. (Changed if else to switch case expression)
+
 let elements = [6, 8, 1, 25, 65, 14 ,2]
 var odd_num = [Int]()
 var even_num = [Int]()
 for item in elements{
-    if item % 2==0{
-       even_num.append(item)
-    }
-    else{
+    
+    switch (item % 2){
+        case 0:
+        even_num.append(item)
+
+        case 1:    
         odd_num.append(item)
+
+        default:break
+
+    
     }
 }
 
 print("Odd numbers ", odd_num)
 print("even numbers ",even_num)
-
 
 Output-
 Odd numbers  [1, 25, 65]
