@@ -1,0 +1,370 @@
+
+Objective c assignment
+
+1)
+Ans a)
+#import <Foundation/Foundation.h>
+@interface SampleClass:NSObject
+/* method declaration */
+- (int)sumOfTwoNum;
+@end
+@implementation SampleClass
+- (int)sumOfTwoNum: (int)number1 num2: (int)number2 {
+// Your code here!
+return number1 +number2;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+int a=[sampleClass sumOfTwoNum:6 num2:5 ];
+NSLog(@"The sum of two numbers is %i", a);
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+Ans b) #import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (int) sumOfEven:(NSArray*)numArr;
+@end
+@implementation SampleClass
+- (int) sumOfEven:(NSArray*)numArr {
+// Your code here!
+NSInteger evenSum = 0;
+for (NSNumber * n in numArr) {
+if([n intValue]%2==0){
+
+  evenSum += [n intValue];
+}
+}
+return evenSum;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSArray *numArray = @[ @1 , @2 , @3 , @4 , @5, @6];
+NSInteger sumOfEven=[sampleClass sumOfEven:numArray];
+NSLog(@"sum of even numbers is  %d",sumOfEven);
+return 0;
+}
+Output- 2022-04-20 11:45:12.314 Main[11:11] sum of even numbers is  12
+
+
+
+
+
+
+
+Ans c)
+#import <Foundation/Foundation.h>
+@interface SampleClass:NSObject
+/* method declaration */
+- (void)printHello;
+@end
+@implementation SampleClass
+- (void)printHello {
+// Your code here!
+for (NSInteger i = 0; i < 100; i++)
+{
+NSInteger grade=i;
+if(i%3==0 && i%5==0){
+    grade=1;
+}
+else if(i%3==0){
+    grade=2;
+}
+else if(i%5==0){
+    grade=3;
+}
+
+switch(grade) {
+case 1 :
+NSLog(@"Hello World\n" );
+break;
+case 2 :
+NSLog(@"World\n" );
+break;
+case 3 :
+NSLog(@"World\n" );
+break;
+
+default :
+NSLog(@" %d ", i);
+}
+}
+    
+
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+[sampleClass printHello];
+return 0;
+}
+
+
+
+
+
+
+Ans d).
+#import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (NSArray*) mergeArray:(NSArray*)array1 arr2: (NSArray*)array2;
+@end
+@implementation SampleClass
+- (NSArray*) mergeArray:(NSArray*)array1 arr2: (NSArray*)array2  {
+// Your code here!
+NSMutableArray *arr=[[NSMutableArray alloc] init];
+NSInteger i=0,j=0;
+
+while(i< [array1 count] && j< [array2 count]){
+    
+    [arr addObject: [array1 objectAtIndex:i]];
+    [arr addObject: [array2 objectAtIndex:j]];
+    i++;
+    j++;
+    
+}
+while(i< [array1 count]){
+     [arr addObject: [array1 objectAtIndex:i]];
+     i++;
+}
+while( j< [array2 count]){
+     [arr addObject: [array2 objectAtIndex:j]];
+     j++;
+}
+return arr;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSArray *numArray1 = @[ @1 , @2 , @3 , @4 ];
+NSArray *numArray2 = @[ @7 , @8 , @9 ];
+NSArray *mergedArray=[sampleClass mergeArray:numArray1 arr2:numArray2];
+NSLog(@"The merged array is %@", mergedArray);
+return 0;
+}
+
+Output: 2022-04-21 04:42:43.943 Main[12:12] The merged array is (1, 7, 2, 8, 3, 9, 4)
+
+
+
+
+
+
+Ans e)
+#import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (NSArray*) removeDuplicates:(NSArray*)array1 ;
+@end
+@implementation SampleClass
+- (NSArray*) removeDuplicates:(NSArray*)array1  {
+// Your code here!
+NSMutableSet *arr=[[NSMutableSet alloc] init];
+NSInteger i=0;
+
+
+while(i< [array1 count]){
+     [arr addObject: [array1 objectAtIndex:i]];
+     i++;
+}
+
+return arr;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSArray *numArray1 = @[ @10, @20, @30, @10, @20, @30 ];
+NSArray *newArray=[sampleClass removeDuplicates:numArray1 ];
+NSLog(@"The merged array is %@", newArray);
+return 0;
+}
+
+Output- 2022-04-21 04:41:15.019 Main[11:11] The merged array is (30, 10, 20)
+
+
+
+
+Ans f)
+#import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (NSArray*) shiftElements:(NSMutableArray*)array1 ;
+@end
+@implementation SampleClass
+- (NSArray*) shiftElements:(NSMutableArray*)array1  {
+// Your code here!
+
+
+[array1 insertObject: [array1 objectAtIndex:[array1 count]-1] atIndex:0];
+[array1 removeLastObject];
+
+return array1;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSArray *myArray = @[ @"a", @"b", @"c", @"d"];
+NSMutableArray *myMutableArray = [NSMutableArray arrayWithArray:myArray];
+NSArray *newArray=[sampleClass shiftElements:myMutableArray ];
+NSLog(@"The shifted array is %@", newArray);
+return 0;
+}
+
+Output: 2022-04-21 05:15:02.824 Main[11:11] The shifted array is (d, a, b, c)
+
+
+
+
+Ans g)
+#import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (NSDictionary*) countCharacter:(NSString*)str ;
+@end
+@implementation SampleClass
+- (NSDictionary*) countCharacter:(NSString*)str  {
+NSMutableDictionary *charCount = [[NSMutableDictionary alloc]init];
+// Your code here!
+
+
+for (int i=0;i<str.length;i++){
+    NSString *c=[NSString stringWithFormat:@"%c", [str characterAtIndex:i]];
+    if([charCount objectForKey: c ]!=nil){
+        NSNumber *n=[charCount valueForKey:c];
+        int val=[n intValue];
+        NSNumber *newVal=[NSNumber numberWithInt:val+1];
+        [charCount setObject:newVal forKey:c];
+        
+    }
+    else{
+        [charCount setObject:@1 forKey:c];
+    }
+}
+
+return charCount;
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSString *str=@"abbcccdddd";
+NSDictionary *charCount =[sampleClass countCharacter:str];
+for(id key in charCount){
+    NSLog(@"Character %@ appears %@ times in the string", key,[charCount objectForKey: key]);
+
+}
+return 0;
+}
+
+
+Output: 
+2022-04-21 06:00:51.969 Main[12:12] Character d appears 4 times in the string
+2022-04-21 06:00:51.970 Main[12:12] Character c appears 3 times in the string
+2022-04-21 06:00:51.970 Main[12:12] Character a appears 1 times in the string
+2022-04-21 06:00:51.970 Main[12:12] Character b appears 2 times in the string
+
+
+
+
+
+
+Ans h).
+#import <Foundation/Foundation.h>
+
+@interface SampleClass:NSObject
+/* method declaration */
+- (NSDictionary*) mergedDic:(NSMutableDictionary*)dic1 dictionary2:(NSDictionary*)dic2   ;
+@end
+@implementation SampleClass
+- (NSDictionary*) mergedDic:(NSMutableDictionary*)dic1 dictionary2:(NSDictionary*)dic2  {
+
+// Your code here!
+for (id key in dic2){
+//NSLog(@" %@ %@", key,[dic2 objectForKey: key]);
+if([dic1 objectForKey: key ]!=nil){
+        NSNumber *n=[dic1 valueForKey:key];
+        NSNumber *n1=[dic2 valueForKey:key];
+        int val=[n intValue]+[n1 intValue];
+        NSLog(@"%i", val);
+        NSNumber *newVal=[NSNumber numberWithInt:val];
+        [dic1 setObject:newVal forKey:key];
+        
+        
+    }
+    else{
+    NSNumber *n1=[dic2 valueForKey:key];
+    int val=[n1 intValue];
+    NSNumber *newVal=[NSNumber numberWithInt:val];
+    [dic1 setObject:newVal forKey:key];
+    }
+    
+}
+
+return dic1;
+
+}
+@end
+int main(void){
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+/* local variable definition */
+SampleClass *sampleClass = [[SampleClass alloc]init];
+/* calling a method to print log */
+NSMutableDictionary *dict = @{@"a": @1, @"b":@2, @"c":@3 };
+NSDictionary *dict1 = @{@"d": @4, @"e": @5, @"b": @88};
+
+NSDictionary *mergedDic =[sampleClass mergedDic:dict dictionary2:dict1];
+
+NSLog(@"%@ ",mergedDic );
+
+
+return 0;
+}
+
+
+
+
+2)The main difference between NNSet and NSArray is that in sets order is not important but in NSArray order is important. NSSet cannot contain multiple values but NSArray can contain multiple values.
+
+
+3) the “== “ compares if the pointers have the same value but for  & isEqual  ,the objects will be compared. We can use == for primitive types.
+
+
+4).Dynamic runtime typing means that variables can be dynamically typed that is the object it points is not checked at compile time but it is checked at runtime. The keyword “id” means that a variable is an object of any type without specifying its exact type.
+
