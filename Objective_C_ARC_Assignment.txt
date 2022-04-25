@@ -1,0 +1,65 @@
+Ans 1.	When an object is created, an area of memory is claimed for that object. Now, the variable that holds the object is a pointer to that object, which is called a retain count or a reference count.
+ARC was introduced from iOS 4.
+Reference count increases by one when an object is referred to. When an object is no longer needed, its reference count is decreased by one. When the reference count of an object becomes zero, it is cleared from the memory.
+Before ARC, developers had to manually call retain/release statement to manage memory.
+
+
+
+Ans 2.	Strong qualifiers means that we own the object that we are referencing with this pointer. The compiler will not destroy the object as long as you point to it with a strong qualifier. In strong qualifier, reference count is increased by 1.
+When we assign an object to a weak qualifier, this means that we don’t own the object. The object will remain in memory as long as some other object is keeping a strong reference to it. In weak qualifier, the retain count of that object is not increased.
+
+
+
+
+Ans 3.	Weak property means that we don’t have control over the object’s lifetime. The object is alive because at least one other object holds a strong reference to it.
+The danger of using a weak reference is that when the target object is destroyed, the pointer does not point to a valid object. So if we try to use that pointer, our application will crash.
+
+
+
+
+Ans 4.	When two objects strongly reference each other due to which the reference count does not drop to zero. This is called a retain cycle. When retain cycle is created more and more memory gets consumed which results in memory leak.
+
+
+
+Ans 5.	// A person is in a department, a department has one person.
+@class Department;
+@interface Person:NSObject
+@property (strong,nonatomic)Department * department;
+@end
+@implementation Person
+-(void)dealloc{ //We will not see the dealloc log, as the object is not deallocated
+NSLog(@"dealloc person");
+}
+@end
+@interface Department: NSObject
+@property (strong,nonatomic)Person * person;
+@end
+@implementation Department
+-(void)dealloc{ //We will not see the dealloc log, as the object is not deallocated
+NSLog(@"dealloc Department");
+}
+@end
+
+- (void)createRetainCycle {
+Person * person = [[Person alloc] init];
+Department * apartment = [[Department alloc] init];
+person.department = department;
+department.person = person;
+}
+
+//We will not see the dealloc log, as the object is not deallocated
+
+
+
+Ans 6.	Other than strong and weak qualifiers, there are atomic, non-atomic, retain, assign, unsafe_unretained, copy, readonly and readwrite qualifiers.
+
+Atomic Qualifier- Atomic means only one thread access the variable. It is thread safe.
+
+Nonatmic qualifier- Nonatomic means multiple thread access the variable. It is thread unsafe.
+
+Assign-		assign is the default and simply performs a variable assignment. It tells the compiler how to synthesize the property's setter implementation
+
+Copy-  it creates a copy of whatever you assign to the property, then takes ownership of that. We us this if we need the value of the object as it is at this moment, and we don't want that value to reflect any changes made by other owners of the object. Copy means that we will always be dealing with an immutable object.
+
+
+
