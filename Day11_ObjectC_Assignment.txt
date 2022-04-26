@@ -1,0 +1,68 @@
+Ans 1.	Problem with categories is that as categories are not subclass so we should not override the existing method from the base class. If a category overrides a method form the base class that exists in the category's class, then we can lose the original implementation.
+
+
+
+Ans 2.	Inheritance is used when you're creating a new class hierarchy whereas a category adds extra functionality to a class without generating a new class at all
+
+
+
+Ans 3.	Category is a way to add methods to a class whether or not source code is available but Extension can only be added to the classes whose source code is available because compiler compiles the source code and extension at the same time. We can add extra instance variables and properties in class extension but not in category.
+
+
+
+Ans 4.	
+import Foundation
+
+var concatString:(String, String) -> String = {
+    (string1,string2) in return string1 + string2
+}
+let answer = concatString("Mohd","Raza")
+print(answer)
+
+Output- MohdRaza
+
+
+
+
+Ans 5.	
+import Foundation
+
+var additionBlock:(Int, Int) -> Int = {
+    (number1,number2) in return number1 + number2
+}
+var substractionBlock:(Int, Int) -> Int = {
+    (number1,number2) in return number1 - number2
+}
+let answer1 = additionBlock(6,7)
+let answer2 = substractionBlock(6,7)
+print(answer1," ",answer2)
+
+
+Output-        13   -1
+
+
+
+
+
+
+Ans 6.
+import Foundation
+
+var printingBlock:(Int, Int)->() = {
+    (sum,diff) in print("Sum is \(sum) and Difference is \(diff)")
+}
+
+var substractionBlock:(Int, Int,Int) -> () = {
+    (number1,number2, sum) in let diff = number1 - number2
+    printingBlock(sum,diff)
+}
+
+var additionBlock:(Int, Int) -> () = {
+    (number1,number2) in let sum = number1 + number2
+     substractionBlock(number1,number2,sum)
+}
+
+    
+additionBlock(15,7)
+
+Output-  Sum is 22 and Difference is 8
