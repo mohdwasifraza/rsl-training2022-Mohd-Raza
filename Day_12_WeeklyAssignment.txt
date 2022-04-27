@@ -1,0 +1,128 @@
+import Foundation
+
+class Customer{
+    var firstName : String
+    var lastName : String
+    var accountNumber : String
+    var accountBalance : Float
+    var accountType : accountType
+    var customerType : customerType
+    
+    init (_ fName:String,_ lName:String,_ accNumber:String,_ accBalance:Float,_ accType:accountType,_ cusType:customerType){
+        firstName = fName
+        lastName = lName
+        accountNumber = accNumber
+        accountBalance = accBalance
+        accountType = accType
+        customerType = cusType
+    }
+    
+    func fullName()->String{
+        return ("\(firstName) \(lastName)")
+    }
+    func remainingBalance() -> Float {
+        return accountBalance
+    }
+    func updateBalance(_ balance:Float){
+        accountBalance = balance
+        print("updated balance = \(accountBalance)")
+    }
+    func updateAccountType(_ newAccountType:customerType){
+        customerType = newAccountType
+        print("Account Type changed to \(customerType)")
+    }
+}
+
+enum accountType{
+    case saving
+    case current
+}
+enum customerType:Equatable{
+    case manager
+    case client
+    
+}
+protocol Banking{
+    func loginWithAccountNumber(_ loggedAccount:String) -> Customer?
+    func getBalance(_ object:Customer)
+    func withdrawAmount(_ object:Customer,_ amount:Float)
+    func depositAmount(_ object:Customer,_ amount:Float)
+    func getCustomerType(_ object:Customer)
+    
+}
+class Bank:Banking{
+    var loggedinAccountNumber : String=""
+    var listOfCustomer:[Customer]
+
+    init(){
+        listOfCustomer = [ Customer("Mohd","Raza", "56982751", 54534.56, .current, .client), Customer("Raj","Tiwari","65792347",60000.33,.saving,.manager) , Customer("Ajay","Rathore","98756582",68923.32,.current,.client) ]
+        
+    }
+    
+    func loginWithAccountNumber(_ loggedAccount:String) -> Customer? {
+        loggedinAccountNumber = loggedAccount
+        for item in listOfCustomer{
+            if item.accountNumber == loggedinAccountNumber{
+                return item
+            }
+        }
+        return nil
+    }
+    func getBalance(_ object:Customer){
+        print("Account Balance = \(object.remainingBalance())")
+    }
+
+    func withdrawAmount(_ object:Customer,_ amount:Float){
+        print("Amount to Withdraw = \(amount)")
+        object.updateBalance(object.remainingBalance() - amount)
+    }
+
+    func depositAmount(_ object:Customer,_ amount:Float){
+        print("Amount to deposit = \(amount)")
+        object.updateBalance(object.remainingBalance() + amount)
+    }
+    func getCustomerType(_ object:Customer){
+            if object.customerType == .manager{
+                print("List of Customer:")
+                for item in listOfCustomer{
+                    print("Person name = \(item.fullName()) account number = \(object.accountNumber) account balance =\(object.remainingBalance())")
+                }
+            }
+            else{
+                print("No access")
+            }  
+    }
+}
+
+let HDFCBank:Banking = Bank()
+
+let  result1 = HDFCBank.loginWithAccountNumber("1995643")
+if let bank1 = result1 {
+	HDFCBank.getBalance(bank1)
+    HDFCBank.withdrawAmount(bank1,4454.255)
+} else {
+	print("Account doesnt exists")
+}
+
+
+
+let result = HDFCBank.loginWithAccountNumber("56982751")
+if let bank = result {
+	HDFCBank.getBalance(bank)
+    HDFCBank.withdrawAmount(bank,5000.56)
+} else {
+	print("Account doesnt exists")
+}
+
+
+OUTPUT-
+
+Account doesnt exists
+
+
+Account Balance = 54534.56
+Amount to Withdraw = 5000.56
+updated balance = 49534.0
+
+
+
