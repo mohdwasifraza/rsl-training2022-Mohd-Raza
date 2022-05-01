@@ -1,0 +1,76 @@
+1)	a. applicationWillEnterForeground and sceneWillEnterForeground- This method indicates that app will become active again soon. We can perform state restoration tasks here such as retrieving the stored data.
+    applicationDidBecomeActive and sceneDidBecomeActive- This method indicates that our app is completely loaded and is ready to respond to user action.
+
+b. applicationWillResignActive and sceneWillResignActive- This method indicates that our App is going to enter background or is going to get suspended. We can save tasks here.
+
+     applicationDidEnterBackground and sceneDidEnterBackground- - This method indicates that our App has entered the background state.
+
+c. applicationWillResignActive and sceneWillResignActive- This method indicates that our App is going to enter background or is going to get suspended. We can save tasks here.
+
+     applicationDidEnterBackground and sceneDidEnterBackground- This method indicates that our App has entered the background state.
+
+
+d. applicationDidReceiveMemoryWarning and sceneDidReceiveMemoryWarning- This indicates try to clean up as much memory as possible. 
+
+e. applicationWillTerminate and sceneWillTerminate- Terminate the app.
+
+
+
+
+
+
+2)	a. viewDidLoad- The viewDidLoad event is only called when the view is created and loaded into memory 
+viewWillAppear- This event notifies the viewController whenever the view appears on the screen.  In this step the view has bounds that are defined but the orientation is not set.
+
+ viewDidAppear- The viewDidAppear event fires after the view is presented on the screen. Which makes it a good place to get data from a backend service or database.
+
+b. viewWillDisappear- The viewWillDisappear event fires when the view of presented viewController is about to disappear, dismiss, cover or hide behind other viewController
+viewDidDisappear- This event is fired just after the view disappears.
+
+c. viewWillDisappear- The viewWillDisappear event fires when the view of presented viewController is about to disappear, dismiss, cover or hide behind other viewController
+viewDidDisappear- This event is fired just after the view disappears. 
+
+d. viewDidReceiveMemoryWarning- This event is fired when parent application receives a memory warning
+
+e. 
+
+
+
+
+
+
+
+3)	Overriden method-
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    NSLog(@"coordinator value is  %@ \n ",coordinator);
+    NSLog(@"width = %f, height = %f", size.width, size.height);}
+
+Output- 2022-05-01 21:28:17.846686+0530 testProjject1[18332:988320] coordinator value is  <_UIViewControllerTransitionCoordinator: 0x600003896800>
+
+2022-05-01 21:28:17.846888+0530 testProjject1[18332:988320] width = 844.000000, height = 390.000000
+
+
+When screen is rotated, the size structure parameter contains width and height and coordinator contains the coordinates of the transition
+
+
+
+
+
+
+4)App States-			corresponding delegate/life cycle methods
+-not running-                 applicationWillTerminate, sceneWillTerminate
+-Inactive	                applicationWillEnterForeground, viewDidLoad, viewWillAppear
+- Active - 			applicationDidEnterForeground, viewDidDisappear
+- Background-		 applicationWillResignActive, applicationDidEnterBackground:
+- Suspended-  applicationDidReceiveMemoryWarning, sceneDidReceiveMemoryWarning, viewDidReceiveMemoryWarning
+
+
+
+
+
+
+
+
+
+
+
