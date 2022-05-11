@@ -8,11 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    //var p = [NSLayoutConstraint]()
-    //var l = [NSLayoutConstraint]()
-    //var initialOrientation = true
-    //var isInPortrait = false
+    
     let blueController = UIViewController()
+    let blueView = UIView(frame: CGRect(x: 100, y: 350, width: 300, height: 150))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         contentViewContoller()
@@ -54,7 +53,7 @@ class ViewController: UIViewController {
         addChild(blueController)
 
         // Create view for the view controller.
-        let blueView = UIView(frame: CGRect(x: 100, y: 550, width: 300, height: 150))
+        
         blueView.backgroundColor = UIColor.blue
 
         let blueLabel = UILabel(frame: CGRect(x: 95, y: 60, width: 80, height: 30))
@@ -83,10 +82,15 @@ class ViewController: UIViewController {
         blueView.addSubview(TextField)
         // Call didMoveToParentViewController passing the reference to parent view controller.
         blueController.didMove(toParent: self)
-        blueView.translatesAutoresizingMaskIntoConstraints = true
-            blueView.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
-            blueView.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+             print("Landscape")
+             blueView.frame = CGRect(x: 100, y: 50, width: 300, height: 150)
+                
+        }
     }
   
     
